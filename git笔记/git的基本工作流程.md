@@ -1,4 +1,10 @@
-# git的基本工作流程
+# git的基本操作
+
+配置用户信息：
+
+> git config --global user.name "yourname"
+>
+> git config --global user.email "youremail@xxx.com"
 
 git的四种对象：
 
