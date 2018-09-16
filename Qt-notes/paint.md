@@ -25,3 +25,6 @@ QBitmap(黑白)->QPixmap(彩色)
 > `QPicture`:保存绘图的状态,保存为一个二进制文件
 
 tips:三者之间的用法基本相同
+
+QImage和QPixmap之间的相互转换
+
