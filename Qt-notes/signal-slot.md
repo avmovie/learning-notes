@@ -120,5 +120,83 @@ Qt布局管理器
    >
    > (3) 网格布局
 
-2. 
+
+# 第二次学习：
+
+1. ```c++
+   #include <QObject>
+    ////////// newspaper.h //////////
+   class Newspaper : public QObject
+   {
+       Q_OBJECT
+   public:
+       Newspaper(const QString & name) :
+           m_name(name)
+       {
+       }
+    
+       void send()	//发送信号的函数
+       {
+           emit newPaper(m_name);
+       }
+    
+   signals:
+       void newPaper(const QString &name);	//信号函数
+    
+   private:
+       QString m_name;
+   };
+    
+   ////////// reader.h //////////
+   #include <QObject>
+   #include <QDebug>
+    
+   class Reader : public QObject
+   {
+       Q_OBJECT
+   public:
+       Reader() {}
+    
+       void receiveNewspaper(const QString & name)
+       {
+           qDebug() << "Receives Newspaper: " << name;
+       }
+   };
+    
+   ////////// main.cpp //////////
+   #include <QCoreApplication>
+    
+   #include "newspaper.h"
+   #include "reader.h"
+    
+   int main(int argc, char *argv[])
+   {
+       QCoreApplication app(argc, argv);
+    
+       Newspaper newspaper("Newspaper A");
+       Reader reader;
+       QObject::connect(&newspaper, &Newspaper::newPaper,
+                        &reader,    &Reader::receiveNewspaper);
+       newspaper.send();
+    
+       return app.exec();
+   }
+   ```
+
+知识点:
+
+> 1. 任何成员函数、static 函数、全局函数和 Lambda 表达式都可以作为槽函数
+> 2. 一个信号可以和多个槽连接,但是触发的顺序是不确定的
+> 3. 多个信号可以连接到一个槽,只要任意发出一个信号,这个槽就可以被调用
+> 4. 一个信号可以连接到另一个信号,用法跟信号与槽的方式一样
+> 5. 槽可以被取消连接,当一个对象被delete之后,Qt自动取消所有连接到该对象上的所有槽
+> 6. lambda表达式
+>
+> [](){}mutuable或exception->返回值{函数体}
+>
+> `mutuable`:按值传递函数对象参数时，加上mutable修饰符后，可以修改按值传递进来的拷贝（注意是能修改拷贝，而不是值本身）。
+>
+> `exception`:exception声明用于指定函数抛出的异常，如抛出整数类型的异常，可以使用throw(int)
+>
+> 7. 只有继承了`QObject`类的类，才具有信号槽的能力。所以，为了使用信号槽，必须继承`QObject`。凡是`QObject`类（不管是直接子类还是间接子类），都应该在第一行代码写上`Q_OBJECT`。
 
