@@ -1,5 +1,11 @@
 # 文件操作
 
+1. 文件系统![filesystem](./image/01_文件系统.png)
+
+
+
+2. 
+
 > ```c++
 > QFile file ;
 > file.setFileName();
