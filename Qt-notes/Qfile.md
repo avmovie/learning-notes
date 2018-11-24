@@ -4,29 +4,27 @@
 
 
 
-2. 
+2.  QFile读文件
 
-> ```c++
-> QFile file ;
-> file.setFileName();
-> file.open();
-> file.write ();
-> file.read();
-> file.close();
-> 
-> QFileInfo Info;
-> info.size();				//文件大小
-> info.filename();			//文件名
-> 
-> 
-> QDateStream :二进制方式
-> QTextStream :文本方式(指定编码)
-> QBuffer :内存文件(放在内存中)
->     
->     
-> ```
->
->   
->
->
+```c++
+#include <QFile>
+#include <QFileDialog>
+..........
+    void Widget::on_pushButtonRead_clicked()
+{
+    QString path=QFileDialog::getOpenFileName(this,"打卡文件","../","all(*.*)");
+    if(path.isEmpty()==false)
+    {
+        QFile file(path);
+        bool isOk=file.open(QIODevice::ReadOnly);		//以只读模式打开文件
+        if (isOk==true)
+        {
+            QByteArray array=file.readAll();
+            ui->textEdit->setText(QString(array));
+            //ui->textEdit->setText(array);
+        }
+        QByteArray 
+    }
+}
+```
 
