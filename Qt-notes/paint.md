@@ -111,16 +111,126 @@ void Widget::paintEvent(QPaintEvent *ev)
 
 > `QPixmap`:最常用的,针对屏幕进行优化过,和平台相关
 >
-> `QImage`:和平台无关,可以对图片进行修改,(可以进行像素点的修改),可以在线程中进行绘图
+> `QImage`:和平台无关;修改图片(像素点);在线程中进行绘图
 >
 > `QPicture`:保存绘图的状态(二进制文件)
 
-tips:三者之间的用法基本相同
+```c++
+1. QPixmap 绘图设备
+	1.1 painter.cpp
+#include <QPainter>
+#include <QBrush>
+.........
+    QPixmap pixmap(400,300);
+	QPainter p(&pixmap);						//指定绘图设备
+	p.fillRect(0,0,400,300,QBrush(Qt::white));	//通过画家进行填充
+	pixmap.fill(Qt::white);						//通过绘图设备进行填充
+	p.drawPixmap(0,0,80,80,QPixmap("../Image/face.png"));	
+	pixmap.save("../Image/pixmap.png");			//必须是由绘图设备保存图片
+2. QImage 绘图设备 
+	2.1 image.cpp
+#include <QPainter>
+	QImage image(400,300,QImage::Format_ARGB32);	//透明背景
+	QPainter p;
+	p.begin(&image);
+	p.drawImage(0,0,QImage("../Image/face.png"));
+		//操作像素点
+	for(int i;i<50;i++)
+    {
+        for(int j;j<50;j++)
+        {
+            image.setPixel(QPoint(i,j),qRgb(0,255,255));
+        }
+    }
+	p.end();
+	image.save("../Image.image.png");
+3. QPicture 绘图设备
+3.1 picture.h
+protected:
+	void paintEvent(QPaintEvent *ev);
+3.2 picture.cpp
+#include <QPainter>
+#include <QPicture>
+........
+    QPicture picture;
+	QPainter p;
+	p.beging(&picture);
+	p.drawPixmap(0,0,80,80,QPixmap("../Image/face.png"));
+	p.drawLine(50,50,150,150);
+	p.end();
+	
+	picture.save("../Image/picture.png");			//由绘图设备保存文件
+													//发现保存的图片是二进制文件,打不开
+	//在窗口设备中重新加载该二进制图片
+	void Widget::paintEvent(QPaintEvent* ev)
+    {
+        QPicture pic;
+        pic.load("../Image/picture.png");			//加载刚才保存的二进制图片
+        QPainter p(this);
+        p.drawPicture(0,0,pic);						//只有通过"drawPicture"函数才可以将之前的二进制图片显示出来
+    }
+```
 
-QImage和QPixmap之间的相互转换
+tips:三者之间的用法基本相同,只有少数不同
 
-不规则窗口:
+5. QImage和QPixmap之间的相互转换
+
+> QImage与平台无关,有利于图片的修改和传输
+>
+> QPixmap与平台相关,有利于图片的显示
+
+```c++
+1. widget.cpp
+//QPixmap-->QImage
+	QPainter p(this);
+	QPixmap pixmap;
+	pixmap.load("../Image/face.png");
+	QImage tempImage = pixmap.toImage(pixmap);
+	p.drawImage(0,0.tempImage);
+
+//QImage-->QPixmap
+	QImage image;
+	image.load("../Image/face.png");
+	QPixmap tempPixmap = QPixmap::fromImage(image);
+	p.drawPixmap(100,0,tempPixmap);
+```
+
+6. 不规则窗口:
 
 > 1. 给窗口画一张背景图
 > 2. 去边框
 > 3. 设定属性(背景透明)
+
+```c++
+1. shape.h
+protected:
+	void mousepressEvent(QMouseEvent *ev);
+	void mouseMoveEvent(QMouseEvent *e);
+private:
+	QPoint p;
+2. shape.cpp
+#include <QPainter>
+#include <QMouseEvent>
+............
+    setWindowFlags(Qt::FrameleassWindowHint | windowsFlags());	//设置边框隐藏
+	setAttribute(Qt::WA_TranslucentBackground);					//设置背景透明
+void Widget::mousePressEvent(QmouseEvent *ev)
+{
+    if(ev->button()==Qt::RightButton)
+    {
+        close();
+    }
+    else if(ev->button()==Qt::LeftButton)
+    {
+        //求出相对距离(全局坐标)-(窗口左上角坐标)
+    	p=ev->globalPos()-this->frameGeometry().topleft();
+    }
+}
+    void Widget::mouseMoveEvent(QMouseEvent *e)
+    {
+        if(e->buttons()&Qt::LeftButton)
+        {
+            move(e->globalPos()-p);
+        }
+    }
+```
