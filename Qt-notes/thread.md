@@ -102,7 +102,161 @@
 >    > connect(this,&startThread,myT,&mytimer)
 >    > ```
 >
+> 6. connect()函数第五个参数的作用:默认,队列,直接.
+>
+>    默认时候,如果是多线程,用队列
+>
+>    如果是单线程,默认使用直接方式
+>
+>    队列方式:槽函数所在线程与接受者一致
+>
+>    直接方式: 槽函数所在线程和发送者一致
+
+
 ```c++
+1. MyWdiget.h
+#ifndef MYWIDGET_H
+#define MYWIDGET_H
+#include <QWidget>
+#include "mythread.h"
+#include <QThread>
+namespace Ui {
+class MyWidget;
+}
+class MyWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit MyWidget(QWidget *parent = 0);
+    ~MyWidget();
+    void dealSignal();
+    void dealDestroy();
+signals:
+    void startThread(); //启动子线程的信号
+private slots:
+    void on_btnStart_clicked();
+    void on_btnStop_clicked();
+private:
+    Ui::MyWidget *ui;
+    MyThread *myT;
+    QThread *thread;
+};
+#endif // MYWIDGET_H
+2. MyThread.h
+#ifndef MYTHREAD_H
+#define MYTHREAD_H
+#include <QObject>
+class MyThread : public QObject
+{
+    Q_OBJECT
+public:
+    explicit MyThread(QObject *parent = nullptr);
+    //线程处理函数
+    void Mytimerout();
+    void setFlag(bool flag=true);
+signals:
+    void mySignal();
+public slots:
+private:
+    bool isStop;
+};
+#endif // MYTHREAD_H
+3. MyWidget.cpp
+#include "mywidget.h"
+#include "ui_mywidget.h"
+#include <QThread>
+#include <QDebug>
+#include <QMessageBox>
+MyWidget::MyWidget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::MyWidget)
+{
+    ui->setupUi(this);
+    //动态分配空间,不能指定父对象
+    myT=new MyThread;
+    thread = new QThread(this);
+    //将自定义的线程添加到子线程中
+    myT->moveToThread(thread);
+    connect(myT,&MyThread::mySignal,this,&MyWidget::dealSignal);
+    qDebug()<<"主线程号:"<<QThread::currentThread();
+    connect(this,&MyWidget::startThread,myT,&MyThread::Mytimerout);
+    connect(this,&MyWidget::destroyed,this,&MyWidget::dealDestroy);
+}
+MyWidget::~MyWidget()
+{
+    delete ui;
+}
+
+void MyWidget::on_btnStart_clicked()
+{
+    if(thread->isRunning()==true)
+    {
+        return ;
+    }
+    //启动线程,但是没有启动线程处理函数
+    thread->start();
+    myT->setFlag(false);
+    //如果不能直接调用线程处理函数
+    //直接调用,导致线程处理函数和主线程是在同一个线程
+    //myT->Mytimerout();
+    //只能通过signal-slot的方式来进行调用
+    emit  startThread();
+}
+
+void MyWidget::dealSignal()
+{
+    static int i=0;
+    i++;
+    ui->lcdNumber->display(i);
+}
+
+void MyWidget::on_btnStop_clicked()
+{
+    if(thread->isRunning()==false)
+    {
+        return;
+    }
+    myT->setFlag(true);
+    thread->quit();
+    thread->wait();
+}
+
+void MyWidget::dealDestroy()
+{
+    on_btnStop_clicked();
+    delete myT;
+}
+//线程处理函数内补不允许操作图形界面
+
+4. MyThread.cpp
+#include "mythread.h"
+#include <QThread>
+#include <QDebug>
+
+MyThread::MyThread(QObject *parent) : QObject(parent)
+{
+    isStop=false;
+}
+
+void MyThread::Mytimerout()
+{
+    while(isStop==false)
+    {
+        QThread::sleep(1);
+        emit mySignal();
+        qDebug()<<"子线程号:"<<QThread::currentThread();
+        if(isStop==true)
+        {
+            break;
+        }
+    }
+}
+
+void MyThread::setFlag(bool flag)
+{
+    isStop=flag;
+}
+
 
 ```
 
@@ -110,22 +264,4 @@
 
 3. 在线程中绘图
 
-> ```c++
-> class Mythread:public QObject
-> {
-> public:
-> 	void drawImage()
->     {
->     	QImage imamge(600,600,)
->     	Qpaint p(&image);
->     	QPoint a;
->     	p.drawxxx();
->     }
->     signals:
->     void updateImage(QImage);
-> }
-> ```
 >
->
-
- 
