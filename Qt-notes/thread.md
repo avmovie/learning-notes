@@ -264,4 +264,97 @@ void MyThread::setFlag(bool flag)
 
 3. 在线程中绘图
 
->
+```c++
+1. widget.h
+#include <QWidget>
+#include <QImage>
+#include <QThread>
+#include "mythread.h"
+
+.........
+public:
+	void paintEvent(QPaintEvent *event);
+	void getImage(QImage);
+	void dealClose();
+private:
+	QImage image;
+private:
+	MyThread *myT;
+	QThread *thread;
+2. widget.cpp
+#include "widget.h"
+............
+    //主函数
+myT=new MyThread;					//自定义线程不能指定父对象
+thread = new QThread(this);			//生成子线程
+myT->moveToThread(thread);			//将自定义线程移动到子线程
+thread->start();					//开启子线程,并没有启动线程处理函数
+//在主界面点击按钮,启动线程处理函数
+connect(ui->pushButton,&QPushButton::clicked,myT,&MyThread::drawImage);
+//线程处理函数完成,发送图片
+connnect(myT,&MyThread::updateImage,this,&Widget::getImage);
+//点击关闭时,释放线程
+connect(this,&Widget::destroyed,this,&Widget::dealClose);
+
+void Widget::paintEvent(QPaintEvent *event)
+{
+    QPainter p(this);
+    p.drawImage(0,0,image);
+}
+
+void Widget::getImage(QImage temp)
+{
+    image = temp;
+    update();						//间接调用paintEvent();
+}
+
+void Widget::dealClose()
+{
+    thread->quit();
+    thread->wait();
+    delete myT;     				//因为myT没有指定父对象
+}
+
+3. mythread.h
+#include <QObject>					//自定义线程必须继承于QObject
+#include <QImage>	
+public:
+	void drawImage();				//线程处理函数
+signals:
+	void updateImage(QImage);		//通过信号与槽,传递绘图
+4. mythread.cpp
+#include <QPoint>
+#include <QPen>
+#include <QBrush>
+#include <QPainter>
+#include "mythread.h"
+
+..............
+void MyThread::drawImage()
+{
+    QImage image(500,500,QImage::Format_ARGB32);
+    QPainter p(&image);
+    //设置画笔
+    QPen pen;
+    pen.setWidth(5);
+    p.setPen(pen);
+    //设置画刷
+    QBrush brush;
+    brush.setStyle(Qt::SolidPattern);
+    brush.setColor(Qt::red);
+    p.setBrush(brush);
+    //画五边形
+    QPoint a[5]=
+    {
+        QPoint (qrand()%500,qrand()%500),
+        QPoint (qrand()%500,qrand()%500),
+        QPoint (qrand()%500,qrand()%500),
+        QPoint (qrand()%500,qrand()%500),
+        QPoint (qrand()%500,qrand()%500)
+    };
+    p.drawPolygon(a,5);
+    //发送线程中绘制好的图形
+    emit updateImage(image);
+}
+```
+
