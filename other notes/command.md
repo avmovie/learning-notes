@@ -43,4 +43,6 @@ sudo apt-get purge gnome-shell-extension-appindicator
 ssh
 ```
 
-6. git-configurations 
+6. git configurations 
+7. shadowsocks configurations
+8. ln和alias的区别
