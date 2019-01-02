@@ -44,5 +44,43 @@ ssh
 ```
 
 6. git configurations 
-7. shadowsocks configurations
-8. ln和alias的区别
+7. shadowsocks
+   1. shadowsocks configurations
+
+```json
+{
+    "server":"45.77.177.47",
+    "server_port":8080,
+    "local_address":"127.0.0.1",
+    "local_port":1080,
+    "password":"Pangxiangru0604",
+    "timeout":300,
+    "method":"aes-256-gcm",
+    "fast_open":true
+}
+shackdowsocks1.json
+{
+    "server":"167.179.64.231",
+    "server_port":60666,
+    "local_address":"127.0.0.1",
+    "local_port":1080,
+    "password":"freebird",
+    "timeout":300,
+	"protocol":"origin",
+    "method":"chacha20",
+    "fast_open":true
+}
+```
+
+​	2. shadowsocks install &use 
+
+```shell
+sudo apt-get install python-pip
+pip install shadowsocks
+```
+
+ 	3. switchyomega
+
+> https://blog.huihut.com/2017/08/25/LinuxInstallConfigShadowsocksClient/
+
+6. ln和alias的区别
