@@ -40,11 +40,20 @@ sudo apt-get purge gnome-shell-extension-appindicator
 7. commands about ssh-connection
 
 ```shell
-ssh
+ssh-keygen -t rsa -C "youremail@example.com"
 ```
 
 6. git configurations 
-7. shadowsocks
+
+```shell
+git config --global user.name "yourname"
+git config --global user.email youremail@example.com
+git config --list
+ssh-keygen -t rsa -C "youremail@example.com"
+cd ~/.ssh
+```
+
+6. shadowsocks
    1. shadowsocks configurations
 
 ```json
@@ -77,6 +86,9 @@ shackdowsocks1.json
 ```shell
 sudo apt-get install python-pip
 pip install shadowsocks
+sudo sslocal -c ConfigurationPath -d start		//后台运行
+sudo sslocal -c ConfigurationPath -d stop		//后台停止运行
+sudo sslocal -c ConfigurationPath -d restart	//重启
 ```
 
  	3. switchyomega
