@@ -1,66 +1,64 @@
-    rspf	73	RSPF CPHB	# Radio Shortest Path First (officially CPHB)
-    vmtp	81	VMTP		# Versatile Message Transport
-    eigrp	88	EIGRP		# Enhanced Interior Routing Protocol (Cisco)
-    ospf	89	OSPFIGP		# Open Shortest Path First IGP
-    ax.25	93	AX.25		# AX.25 frames
-    ipip	94	IPIP		# IP-within-IP Encapsulation Protocol
-    etherip	97	ETHERIP		# Ethernet-within-IP Encapsulation [RFC3378]
-    xtp	36	XTP		# Xpress Transfer Protocol
-    dccp	33	DCCP		# Datagram Congestion Control Prot. [RFC4340]
-    ddp	37	DDP		# Datagram Delivery Protocol
-    idpr-cmtp 38	IDPR-CMTP	# IDPR Control Message Transport
-    rspf	73	RSPF CPHB	# Radio Shortest Path First (officially CPHB)
-    rspf	73	RSPF CPHB	# Radio Shortest Path First (officially CPHB)
-    vmtp	81	VMTP		# Versatile Message Transport
-    eigrp	88	EIGRP		# Enhanced Interior Routing Protocol (Cisco)
-    ospf	89	OSPFIGP		# Open Shortest Path First IGP
-    ipip	94	IPIP		# IP-within-IP Encapsulation Protocol
-    etherip	97	ETHERIP		# Ethernet-within-IP Encapsulation [RFC3378]
-    xtp	36	XTP		# Xpress Transfer Protocol
-    dccp	33	DCCP		# Datagram Congestion Control Prot. [RFC4340]
-    ddp	37	DDP		# Datagram Delivery Protocol
-    idpr-cmtp 38	IDPR-CMTP	# IDPR Control Message Transport
-    vmtp	81	VMTP		# Versatile Message Transport
-    eigrp	88	EIGRP		# Enhanced Interior Routing Protocol (Cisco)
-    jianghuiwen.25		# AX.25 frames
-    ipip	94	IPIP		# IP-within-IP Encapsulation Protocol
-    etherip	97	ETHERIP		# Ethernet-within-IP Encapsulation [RFC3378]
-    xtp	36	XTP		# Xpress Transfer Protocol
-    dccp	33	DCCP		# Datagram Congestion Control Prot. [RFC4340]
-    ddp	37	DDP		# Datagram Delivery Protocol
-    idpr-cmtp 38	IDPR-CMTP	# IDPR Control Message Transport
-    rspf	73	RSPF CPHB	# Radio Shortest Path First (officially CPHB)
-    vmtp	81	VMTP		# Versatile Message Transport
-    eigrp	88	EIGRP		# Enhanced Interior Routing Protocol (Cisco)
-    ospf	89	OSPFIGP		# Open Shortest Path First IGP
-    ax.25	93	AX.25		# AX.25 frames
-    ipip	94	IPIP		# IP-within-IP Encapsulation Protocol
-    etherip	97	ETHERIP		# Ethernet-within-IP Encapsulation [RFC3378]
-    xtp	36	XTP		# Xpress Transfer Protocol
-    dccp	33	DCCP		# Datagram Congestion Control Prot. [RFC4340]
-    ddp	37	DDP		# Datagram Delivery Protocol
-    idpr-cmtp 38	IDPR-CMTP	# IDPR Control Message Transport
-    eigrp	88	EIGRP		# Enhanced Interior Routing Protocol (Cisco)
-    ospf	89	OSPFIGP		# Open Shortest Path First IGP
-    ax.25	93	AX.25		# AX.25 frames
-    ipip	94	IPIP		# IP-within-IP Encapsulation Protocol
-    etherip	97	ETHERIP		# Ethernet-within-IP Encapsulation [RFC3378]
-    xtp	36	XTP		# Xpress Transfer Protocol
-    dccp	33	DCCP		# Datagram Congestion Control Prot. [RFC4340]
-    ddp	37	DDP		# y
-    rspf	73	RSPF CPHB	# Radio Shortest Path First (officially CPHB)
-    vmtp	81	VMTP		# 
-    eigrp	88	EIGRP		# Enhanced Interior Routing Protocol (Cisco)
-    rspf	73	RSPF CPHB	# Radio Shortest Path First (officially CPHB)
-    vmtp	81	VMTP		# Versatile Message Transport
-    e	88	GRP		# Enhanced Protocol (Cisco)
-81			# Versatile Message Transport
-    ospf   ospf	89	OSPFIGP		# Open Shortest Path First IGP
-    rspf	73	RSPF CPHB	# Radio Shortest Path First (officially CPHB)
-    vmtp	81	VMTP		# Versatile Message Transport
-    eigrp	88	EIGRP		# Enhanced Interior Routing Protocol (Cisco)
-    ospf	89	OSPFIGP		# Open Shortest Path First IGP
-    ospf	89	OSPFIGP		# Open Shortest Path First IGP
-    ospf	89	OSPFIGP		# Open Shortest Path First IGP
-    ospf	89	OSPFIGPP		# Open Shortest Path First IGP		# Open Shortest Path First IGP
-    vmtp	81	VMTP		# Versatile Message Transport
+^    rspf	73	RSPF CPHB	# Radio Shortest Path First (officially CPHB)
+^    good	81	VMTP		# Versatile Message Transport
+^    eigrp	88	EIGRP		# Enhanced Interior Routing Protocol (Cisco)
+^    ospf	89	OSPFIGP		# Open Shortest Path First IGP
+^    ax.25	93	AX.25		# AX.25 frames
+^    ipip	94	IPIP		# IP-within-IP Encapsulation Protocol
+^    etherip	97	ETHERIP		# Ethernet-within-IP Encapsulation [RFC3378]
+^    xtp	36	XTP		# Xpress Transfer Protocol
+^    dccp	33	DCCP		# Datagram Congestion Control Prot. [RFC4340]
+^    ddp	37	DDP		# Datagram Delivery Protocol
+^    idpr-cmtp 38	IDPR-CMTP	# IDPR Control Message Transport
+^    rspf	73	RSPF CPHB	# Radio Shortest Path First (officially CPHB)
+^    rspf	73	RSPF CPHB	# Radio Shortest Path First (officially CPHB)
+^    good	81	VMTP		# Versatile Message Transport
+^    eigrp	88	EIGRP		# Enhanced Interior Routing Protocol (Cisco)
+^    ospf	89	OSPFIGP		# Open Shortest Path First IGP
+^    ipip	94	IPIP		# IP-within-IP Encapsulation Protocol
+^    etherip	97	ETHERIP		# Ethernet-within-IP Encapsulation [RFC3378]
+^    xtp	36	XTP		# Xpress Transfer Protocol
+^    dccp	33	DCCP		# Datagram Congestion Control Prot. [RFC4340]
+^    ddp	37	DDP		# Datagram Delivery Protocol
+^    idpr-cmtp 38	IDPR-CMTP	# IDPR Control Message Transport
+^    good	81	VMTP		# Versatile Message Transport
+^    eigrp	88	EIGRP		# Enhanced Interior Routing Protocol (Cisco)
+^    jianghuiwen.25		# AX.25 frames
+^    ipip	94	IPIP		# IP-within-IP Encapsulation Protocol
+^    etherip	97	ETHERIP		# Ethernet-within-IP Encapsulation [RFC3378]
+^    xtp	36	XTP		# Xpress Transfer Protocol
+^    dccp	33	DCCP		# Datagram Congestion Control Prot. [RFC4340]
+^    ddp	37	DDP		# Datagram Delivery Protocol
+^    idpr-cmtp 38	IDPR-CMTP	# IDPR Control Message Transport
+^    rspf	73	RSPF CPHB	# Radio Shortest Path First (officially CPHB)
+^    vmpt	81	VMTP		# Versatile Message Transport
+^    eigrp	88	EIGRP		# Enhanced Interior Routing Protocol (Cisco)
+^    ospf	89	OSPFIGP		# Open Shortest Path First IGP
+^    ax.25	93	AX.25		# AX.25 frames
+^    ipip	94	IPIP		# IP-within-IP Encapsulation Protocol
+^    etherip	97	ETHERIP		# Ethernet-within-IP Encapsulation [RFC3378]
+^    xtp	36	XTP		# Xpress Transfer Protocol
+^    dccp	33	DCCP		# Datagram Congestion Control Prot. [RFC4340]
+^    ddp	37	DDP		# Datagram Delivery Protocol
+^    idpr-cmtp 38	IDPR-CMTP	# IDPR Control Message Transport
+^    eigrp	88	EIGRP		# Enhanced Interior Routing Protocol (Cisco)
+^    ospf	89	OSPFIGP		# Open Shortest Path First IGP
+^    ax.25	93	AX.25		# AX.25 frames
+^    ipip	94	IPIP		# IP-within-IP Encapsulation Protocol
+^    etherip	97	ETHERIP		# Ethernet-within-IP Encapsulation [RFC3378]
+^    xtp	36	XTP		# Xpress Transfer Protocol
+^    dccp	33	DCCP		# Datagram Congestion Control Prot. [RFC4340]
+^    ddp	37	DDP		# y
+^    rspf	73	RSPF CPHB	# Radio Shortest Path First (officially CPHB)
+^    vmpt	81	VMTP		# 
+^    eigrp	88	EIGRP		# Enhanced Interior Routing Protocol (Cisco)
+^    rspf	73	RSPF CPHB	# Radio Shortest Path First (officially CPHB)
+^    vmpt	81	VMTP		# Versatile Message Transport
+^    ospf   ospf	89	OSPFIGP		# Open Shortest Path First IGP
+^    rspf	73	RSPF CPHB	# Radio Shortest Path First (officially CPHB)
+^    vmpt	81	VMTP		# Versatile Message Transport
+^    eigrp	88	EIGRP		# Enhanced Interior Routing Protocol (Cisco)
+^    ospf	89	OSPFIGP		# Open Shortest Path First IGP
+^    ospf	89	OSPFIGP		# Open Shortest Path First IGP
+^    ospf	89	OSPFIGP		# Open Shortest Path First IGP
+^    ospf	89	OSPFIGPP		# Open Shortest Path First IGP		# Open Shortest Path First IGP
+^    vmpt	81	VMTP		# Versatile Message Transport
