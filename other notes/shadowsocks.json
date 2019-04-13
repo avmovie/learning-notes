@@ -1,0 +1,11 @@
+    {
+      "server": "167.179.64.231",
+      "server_port": 60666,
+      "password": "freebird",
+      "method": "chacha20",
+      "plugin": "",
+      "plugin_opts": "",
+      "plugin_args": "",
+      "remarks": "",
+      "timeout": 5
+    }
