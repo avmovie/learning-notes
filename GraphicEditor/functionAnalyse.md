@@ -5,6 +5,8 @@
 * openAction
 * saveAction
 * saveAsAction
+* closeAction
+* printAction
 * exitAction
 * ExportAction
 
@@ -24,6 +26,7 @@
     * saveAction
     * saveAsAction
     * exportAction
+    * closeAction
     * exitAction
   * editMenu
     * undoAction
@@ -35,14 +38,13 @@
   * insertMenu
     * insertImageAction
     * insetTableAction
-    * insert
+    * insertCurTimeAction
   * formatMenu
-    * textAction
-    * alignAction
-    * imageAction
-    * codeAction
+    * fontAction
+    * paragraphAction
+    * colorAction
   *  styleMenu(radiobox)
-    * titleAction"
+    * titleAction
     * subtitleAction
     * heading1Action
     * heading2Action
@@ -56,16 +58,23 @@
   * helpMenu
     * userguide
     * about
-* statusBar
-  * isModified
-
-4. dialogue setting 
+    * about Qt
+1. dialogue setting 
 * exitDialog 
 * find&replace dialog 
 * insertDialog 
 * insetImageDialog 
 
 5. some common function
-    setFont();
-    
-* 
+  
+  setFont();
+
+6. statusBar setting
+  * modified 
+  * position
+    * row number & columu number 
+  * format prompt
+    * text format(font-family,font-style,font-size,font-color) 
+  * current document title
+    * show current filename 
+  *  
