@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/">
+        <file>textedit/align_center.png</file>
+        <file>textedit/align_justify.png</file>
+        <file>textedit/align_left.png</file>
+        <file>textedit/align_right.png</file>
+        <file>textedit/background_color.png</file>
+        <file>textedit/bold.png</file>
+        <file>textedit/copy.png</file>
+        <file>textedit/cut.png</file>
+        <file>textedit/insert_image.png</file>
+        <file>textedit/italic.png</file>
+        <file>textedit/new_page.png</file>
+        <file>textedit/paste.png</file>
+        <file>textedit/redo.png</file>
+        <file>textedit/remove_format.png</file>
+        <file>textedit/strike_trought.png</file>
+        <file>textedit/subscript.png</file>
+        <file>textedit/superscript.png</file>
+        <file>textedit/text_color.png</file>
+        <file>textedit/underline.png</file>
+        <file>textedit/undo.png</file>
+    </qresource>
+</RCC>
